@@ -8,17 +8,18 @@ const RIGHT_BOUNDARY = 1221
 var BULLET: PackedScene = preload("res://Projectiles/bullet.tscn")
 @onready var bullet_marker = $Marker2D
 @onready var shoot_timer = $ShotTimer
+var fireDelay : float = 1.0
 
 
 func shoot():
 	var b = BULLET.instantiate()
 	b.position = bullet_marker.global_position
 	get_parent().add_child(b)
-	
+	shoot_timer.start()
 
 #shooting of ship
-func _input(event):	
-	if Input.is_action_pressed("shoot"):
+func _input(event):
+	if Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
 		shoot()
 
 #check user for input of ship
