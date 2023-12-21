@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 # speed and screen constraints
 const SPEED = 300.0
-const LEFT_BOUNDARY = 57
-const RIGHT_BOUNDARY = 1221
+const LEFT_BOUNDARY = 45
+const RIGHT_BOUNDARY = 1240
+const TOP_BOUNDARY = 50
+const BOTTOM_BOUNDARY = 670
 
 var BULLET: PackedScene = preload("res://Projectiles/bullet.tscn")
 @onready var bullet_marker = $Marker2D
 @onready var shoot_timer = $ShotTimer
-var fireDelay : float = 1.0
 
 
 func shoot():
@@ -24,6 +25,10 @@ func _input(event):
 
 #check user for input of ship
 func _process(delta):
+	if Input.is_action_pressed("up"):
+		position.y -= SPEED * delta
+	if Input.is_action_pressed("down"):
+		position.y += SPEED * delta
 	if Input.is_action_pressed("right"):
 		position.x += SPEED * delta
 	if Input.is_action_pressed("left"):
@@ -31,4 +36,5 @@ func _process(delta):
 		
 	# Constrain the spaceship within the boundaries
 	position.x = clamp(position.x, LEFT_BOUNDARY, RIGHT_BOUNDARY)
+	position.y = clamp(position.y, TOP_BOUNDARY, BOTTOM_BOUNDARY)
 

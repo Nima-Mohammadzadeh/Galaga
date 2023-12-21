@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://yypqwl3ryg4d" path="res://Level/space.jpg" id="1_e7irq"]
 [ext_resource type="PackedScene" uid="uid://k3tdvwdqkw56" path="res://Player/player.tscn" id="2_8nma2"]
-[ext_resource type="PackedScene" uid="uid://c2n8d2swj7m8j" path="res://Projectiles/bullet.tscn" id="3_gjb2o"]
+[ext_resource type="PackedScene" uid="uid://d4ftcrq2ltrjc" path="res://Enemies/bug.tscn" id="2_lftq7"]
 
 [node name="MainLevel" type="Node2D"]
 
@@ -13,8 +13,8 @@ texture = ExtResource("1_e7irq")
 expand_mode = 1
 stretch_mode = 1
 
+[node name="Enemy" parent="." instance=ExtResource("2_lftq7")]
+position = Vector2(625, 22)
+
 [node name="Player" parent="." instance=ExtResource("2_8nma2")]
 position = Vector2(640, 666)
-
-[node name="Bullet" parent="." instance=ExtResource("3_gjb2o")]
-position = Vector2(638, 557)

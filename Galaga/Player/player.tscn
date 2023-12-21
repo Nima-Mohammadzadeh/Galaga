@@ -19,4 +19,5 @@ texture = ExtResource("1_vyr2c")
 position = Vector2(2.38419e-07, -117.5)
 
 [node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.5
 one_shot = true

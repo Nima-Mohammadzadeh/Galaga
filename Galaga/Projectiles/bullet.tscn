@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Projectiles/bullet.gd" id="1_goj1r"]
 
 [node name="Bullet" type="Area2D"]
+scale = Vector2(0.7, 0.7)
 script = ExtResource("1_goj1r")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
