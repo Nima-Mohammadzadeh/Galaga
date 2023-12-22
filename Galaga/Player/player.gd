@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 
 # speed and screen constraints
 const SPEED = 300.0
@@ -19,7 +19,7 @@ func shoot():
 	shoot_timer.start()
 
 #shooting of ship
-func _input(event):
+func _input(_event):
 	if Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
 		shoot()
 
@@ -38,3 +38,10 @@ func _process(delta):
 	position.x = clamp(position.x, LEFT_BOUNDARY, RIGHT_BOUNDARY)
 	position.y = clamp(position.y, TOP_BOUNDARY, BOTTOM_BOUNDARY)
 
+
+
+
+func _on_area_entered(area):
+	if area.is_in_group("enemies"):
+		print("collide")
+	

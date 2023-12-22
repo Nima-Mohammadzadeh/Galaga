@@ -10,7 +10,9 @@ var BULLET: PackedScene = preload("res://Projectiles/enemy_bullet.tscn")
 @onready var bullet_location = $marker2d
 @onready var shoot_timer = $Timer
 
-
+func _ready():
+	add_to_group("enemies")
+	
 func shoot(): 
 	var b = BULLET.instantiate()
 	b.position = bullet_location.global_position
@@ -20,6 +22,7 @@ func shoot():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 #Have the enemy move right until the screen boundry is hit
+
 	if (moving_right):
 		position.x += speed * delta
 		if(position.x >= RIGHT_BOUNDARY):
@@ -32,3 +35,4 @@ func _process(delta):
 	position.x = clamp(position.x, LEFT_BOUNDARY, RIGHT_BOUNDARY)
 	if shoot_timer.is_stopped():
 		shoot()
+

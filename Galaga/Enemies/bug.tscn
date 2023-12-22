@@ -20,3 +20,5 @@ position = Vector2(-1.5299e-06, -17.5)
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
