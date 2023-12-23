@@ -1,7 +1,16 @@
-extends Area2D
+#Bullet
+extends CharacterBody2D
 
-var speed = 800
+const speed = 800
+var direction = Vector2.UP
+
+func _ready():
+	add_to_group("bullet")
 
 func _process(delta):
-	position.y -= speed * delta
+	var collisionResult = move_and_collide(direction * speed * delta)
+	if collisionResult != null:
+		print("works!")
+		queue_free()
+	
 

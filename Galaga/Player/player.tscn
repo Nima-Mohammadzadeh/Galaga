@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Player/player.gd" id="1_2tuew"]
 [ext_resource type="Texture2D" uid="uid://dhtfdttvkdf7x" path="res://Player/PngItem_2101902.png" id="1_vyr2c"]
 
-[node name="Player" type="Area2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_2tuew")
 
@@ -16,10 +16,8 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_vyr2c")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(2.38419e-07, -117.5)
+position = Vector2(1.4013e-45, -150)
 
 [node name="ShotTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]

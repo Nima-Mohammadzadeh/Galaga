@@ -3,11 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://dyp0xywfpfapk" path="res://Projectiles/toppng.com-alaga-galaga-missile-289x577.png" id="1_elr1v"]
 [ext_resource type="Script" path="res://Projectiles/bullet.gd" id="1_goj1r"]
 
-[node name="Bullet" type="Area2D"]
-scale = Vector2(0.7, 0.7)
+[node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 3
 script = ExtResource("1_goj1r")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.114286, 0.285715)
+scale = Vector2(0.996032, 0.991071)
 polygon = PackedVector2Array(-6, -14, -6, -20, 6, -20, 6, -14, 18, -14, 18, 0, 6, 0, 6, 20, -6, 20, -6, 0, -18, 0, -18, -14)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
