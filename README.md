@@ -25,12 +25,12 @@ Objectives
 
 Roadmap
 
- Basic player movement
- Enemy design and AI
- Implement scoring system
- Add power-ups and special abilities
- Create multiple levels with increasing difficulty
- Add sound effects and background music
- Polish UI and game visuals
- Implement save game feature
- Final testing and bug fixes
+    Basic player movement and controls
+    Development of enemy designs and AI behaviors
+    Implementation of a scoring system
+    Addition of power-ups and special abilities
+    Creation of multiple levels with varying difficulty
+    Integration of sound effects and background music
+    Enhancement of UI and game visuals
+    Implementation of a save game feature
+    Comprehensive testing and bug fixing
