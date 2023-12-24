@@ -1,20 +1,28 @@
-#Player
 extends CharacterBody2D
 class_name Player
-# speed, life and screen constraints
+# speed and life variables for player
 @export var life = 10
 @export var SPEED = 400
+@onready var bullet_marker = $Marker2D
+@onready var shoot_timer = $ShotTimer
+@onready var animatedSprite = $AnimatedSprite2D
 const LEFT_BOUNDARY = 45
 const RIGHT_BOUNDARY = 1240
 const TOP_BOUNDARY = 50
 const BOTTOM_BOUNDARY = 670
 
 var BULLET: PackedScene = preload("res://Projectiles/bullet.tscn")
-@onready var bullet_marker = $Marker2D
-@onready var shoot_timer = $ShotTimer
+func _ready():
+	Signals.emit_signal("on_player_life_changed",life)
 
 func get_input():
 	var input_direction = Input.get_vector("left","right","up","down")
+	if input_direction.x > 0:
+		animatedSprite.play("right")
+	elif input_direction.x <0:
+		animatedSprite.play("left")
+	else:
+		animatedSprite.play("straight")
 	velocity = input_direction * SPEED
 
 func shoot():
@@ -38,7 +46,7 @@ func _physics_process(delta):
 
 func damage(amount: int):
 	life -= amount
-	print("Player health left: ",life)
+	Signals.emit_signal("on_player_life_changed",life)
 	if life <= 0:
 		print("PLAYER DIED")
 		queue_free()

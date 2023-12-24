@@ -1,20 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://k3tdvwdqkw56"]
+[gd_scene load_steps=8 format=3 uid="uid://k3tdvwdqkw56"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_2tuew"]
-[ext_resource type="Texture2D" uid="uid://dhtfdttvkdf7x" path="res://Player/PngItem_2101902.png" id="1_vyr2c"]
+[ext_resource type="Texture2D" uid="uid://cjmwht7xdcla2" path="res://SpaceShooter_Assets/player_sheet.png" id="2_bagmw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0tdc"]
+radius = 100.031
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjdqf"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(0, 0, 99, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt1bs"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(198, 0, 99, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qifsj"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(99, 0, 99, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vrft5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjdqf")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt1bs")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qifsj")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_2tuew")
 life = 5
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.5, 0.5)
-polygon = PackedVector2Array(-180, -46, -178, 72, -156, 72, -156, 50, -132, 50, -130, 24, -108, 24, -108, -120, -84, -120, -84, -26, -60, -26, -60, -72, -34, -72, -34, -168, -12, -168, -10, -242, 12, -240, 12, -170, 38, -170, 38, -72, 62, -72, 62, -24, 84, -24, 84, -122, 108, -122, 110, 22, 132, 22, 132, 46, 158, 46, 158, 72, 182, 72, 180, -48, 206, -46, 204, 240, 180, 240, 180, 192, 156, 192, 156, 168, 132, 168, 130, 144, 106, 144, 108, 120, 84, 122, 84, 192, 36, 192, 36, 168, 14, 168, 12, 240, -12, 240, -10, 168, -36, 166, -36, 192, -84, 192, -84, 118, -110, 120, -110, 144, -132, 144, -132, 170, -156, 168, -156, 192, -178, 192, -180, 240, -204, 240, -204, -48)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_v0tdc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_vyr2c")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.2, 2.2)
+sprite_frames = SubResource("SpriteFrames_vrft5")
+animation = &"straight"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(1.4013e-45, -150)
