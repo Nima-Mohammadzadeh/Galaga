@@ -17,8 +17,3 @@ polygon = PackedVector2Array(-6, -14, -6, -20, 6, -20, 6, -14, 18, -14, 18, 0, 6
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.0841122, 0.0480094)
 texture = ExtResource("1_elr1v")
-
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-
-[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

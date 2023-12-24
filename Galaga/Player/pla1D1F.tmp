@@ -6,7 +6,6 @@
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_2tuew")
-life = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.5, 0.5)

@@ -1,24 +1,36 @@
 [gd_scene load_steps=5 format=3 uid="uid://bn0w1lauphwj5"]
 
 [ext_resource type="Script" path="res://Level/main_level.gd" id="1_863c6"]
-[ext_resource type="Texture2D" uid="uid://yypqwl3ryg4d" path="res://Level/space.jpg" id="1_e7irq"]
 [ext_resource type="PackedScene" uid="uid://k3tdvwdqkw56" path="res://Player/player.tscn" id="2_8nma2"]
+[ext_resource type="Texture2D" uid="uid://cl8jnnfkb2a1l" path="res://Enemies/black-370118_1280.png" id="2_cr3wj"]
 [ext_resource type="PackedScene" uid="uid://d4ftcrq2ltrjc" path="res://Enemies/bug.tscn" id="2_lftq7"]
 
 [node name="MainLevel" type="Node2D"]
 script = ExtResource("1_863c6")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1280.0
+offset_left = 4.0
+offset_right = 1284.0
 offset_bottom = 718.0
-texture = ExtResource("1_e7irq")
+texture = ExtResource("2_cr3wj")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TextureRect"]
+position = Vector2(627, -65)
+amount = 300
+lifetime = 2.0
+preprocess = 3.0
+speed_scale = 0.4
+fixed_fps = 50
+emission_shape = 3
+emission_rect_extents = Vector2(650, 0)
+scale_amount_max = 3.0
 
 [node name="Player" parent="." instance=ExtResource("2_8nma2")]
 position = Vector2(640, 666)
 
-[node name="Enemy" parent="." groups=["enemies"] instance=ExtResource("2_lftq7")]
-position = Vector2(625, 22)
+[node name="Enemy" parent="." instance=ExtResource("2_lftq7")]
+position = Vector2(625, 32)
 collision_layer = 3
 collision_mask = 3
