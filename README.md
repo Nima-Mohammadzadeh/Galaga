@@ -1,2 +1,2 @@
 # Galaga
-Galaga Arcade Game
+Galaga-Inspired Arcade Game
