@@ -1,20 +1,18 @@
 extends Area2D
 
-
 var BULLET: PackedScene = preload("res://Projectiles/enemy_bullet.tscn")
 @onready var bullet_location = $marker2d
 @onready var shoot_timer = $Timer
 
 
-@export var score_for_kill: int
+@export var score_for_kill: int = 100
 @export var speed = 100
-@export var life: int
+@export var life: int = 1
 
 
 const LEFT_BOUNDARY = 57
 const RIGHT_BOUNDARY = 1251
 var moving_right = true
-
 
 
 func _ready():
@@ -44,8 +42,16 @@ func _process(delta):
 func damage(amount: int):
 	life -= amount
 	if life <= 0:
+		
 		Signals.emit_signal("on_score_change",score_for_kill)
-		queue_free()
+		$AudioStreamPlayer2D.play()
+		hide()
+		var timer = Timer.new()
+		timer.wait_time = $AudioStreamPlayer2D.stream.get_length()
+		timer.one_shot = true
+		timer.connect("timeout", Callable(self, "queue_free"))
+		add_child(timer)
+		timer.start()
 		
 		
 

@@ -12,9 +12,10 @@ const TOP_BOUNDARY = 50
 const BOTTOM_BOUNDARY = 670
 
 var BULLET: PackedScene = preload("res://Projectiles/bullet.tscn")
+
 func _ready():
 	Signals.emit_signal("on_player_life_changed",life)
-
+	
 func get_input():
 	var input_direction = Input.get_vector("left","right","up","down")
 	if input_direction.x > 0:
@@ -35,6 +36,8 @@ func shoot():
 func _input(_event):
 	if Input.is_action_pressed("shoot") and shoot_timer.is_stopped():
 		shoot()
+		$AudioStreamPlayer2D.play()
+		
 
 #check user for input of ship
 func _physics_process(delta):

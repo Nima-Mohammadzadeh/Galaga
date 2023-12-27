@@ -16,7 +16,6 @@ func _on_Bullet_area_entered(area):
 		var BulletEffect = pBulletEffect.instantiate()
 		BulletEffect.position = position
 		get_parent().add_child(BulletEffect)
-		
 		area.damage(1)
 		queue_free()
 
