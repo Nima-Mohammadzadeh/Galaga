@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxu2rjh52ttsb"]
+[gd_scene load_steps=6 format=3 uid="uid://cxu2rjh52ttsb"]
 
 [ext_resource type="PackedScene" uid="uid://bnce1r8cafgc4" path="res://Hud/life_icon.tscn" id="1_6n88i"]
 [ext_resource type="Script" path="res://Hud/hud.gd" id="1_arihd"]
+[ext_resource type="FontFile" uid="uid://bvred4n7nny2" path="res://ARCADECLASSIC.TTF" id="3_bitjf"]
+
+[sub_resource type="Theme" id="Theme_gtx4c"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wfa0c"]
+font = ExtResource("3_bitjf")
+font_size = 35
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -10,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_gtx4c")
 script = ExtResource("1_arihd")
 
 [node name="LifeContainer" type="HBoxContainer" parent="."]
@@ -38,6 +46,5 @@ anchor_right = 1.0
 offset_top = 10.0
 offset_bottom = 23.0
 grow_horizontal = 2
-text = "000
-"
+label_settings = SubResource("LabelSettings_wfa0c")
 horizontal_alignment = 1

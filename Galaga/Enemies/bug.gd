@@ -1,19 +1,24 @@
-#enemy
 extends Area2D
-
-@export var speed = 100
-const LEFT_BOUNDARY = 57
-const RIGHT_BOUNDARY = 1251
-var moving_right = true
-@export var life = 20
 
 
 var BULLET: PackedScene = preload("res://Projectiles/enemy_bullet.tscn")
 @onready var bullet_location = $marker2d
 @onready var shoot_timer = $Timer
 
+
+@export var score_for_kill: int
+@export var speed = 100
+@export var life: int
+
+
+const LEFT_BOUNDARY = 57
+const RIGHT_BOUNDARY = 1251
+var moving_right = true
+
+
+
 func _ready():
-	add_to_group("enemies")
+	add_to_group("damagable")
 	
 func shoot(): 
 	var b = BULLET.instantiate()
@@ -39,9 +44,10 @@ func _process(delta):
 func damage(amount: int):
 	life -= amount
 	if life <= 0:
+		Signals.emit_signal("on_score_change",score_for_kill)
 		queue_free()
 		
-
+		
 
 func _on_body_entered(body):
 	if body is Player:
