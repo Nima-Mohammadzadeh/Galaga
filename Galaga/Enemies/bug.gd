@@ -3,6 +3,7 @@ extends Area2D
 var BULLET: PackedScene = preload("res://Projectiles/enemy_bullet.tscn")
 @onready var bullet_location = $marker2d
 @onready var shoot_timer = $Timer
+var ready_to_shoot = true
 
 
 @export var score_for_kill: int = 100
@@ -13,6 +14,11 @@ var BULLET: PackedScene = preload("res://Projectiles/enemy_bullet.tscn")
 const LEFT_BOUNDARY = 57
 const RIGHT_BOUNDARY = 1251
 var moving_right = true
+
+#Creating enemy random movement
+#WORK IN PROGRESS
+var directions = [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]
+var currentDirection = Vector2.ZERO
 
 
 func _ready():
@@ -26,7 +32,7 @@ func shoot():
 	
 func _process(delta):
 #shoot with a delay back at the player
-	if shoot_timer.is_stopped():
+	if shoot_timer.is_stopped() and ready_to_shoot:
 		shoot()
 #Have the enemy move right until the screen boundry is hit
 	if moving_right:
@@ -44,10 +50,13 @@ func damage(amount: int):
 	if life <= 0:
 		
 		Signals.emit_signal("on_score_change",score_for_kill)
-		$AudioStreamPlayer2D.play()
+		$DeathSound.play()
 		hide()
+		remove_from_group("damagable")
+		shoot_timer.stop()
+		ready_to_shoot = false
 		var timer = Timer.new()
-		timer.wait_time = $AudioStreamPlayer2D.stream.get_length()
+		timer.wait_time = $DeathSound.stream.get_length()
 		timer.one_shot = true
 		timer.connect("timeout", Callable(self, "queue_free"))
 		add_child(timer)
