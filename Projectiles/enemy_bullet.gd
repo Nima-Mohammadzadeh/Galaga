@@ -18,6 +18,7 @@ func _on_Enemy_bullet_body_entered(body):
 	if body.is_in_group("player"):
 		print(body)
 		print(body)
+		print(body)
 		var BulletEffect = pBulletEffect.instantiate()
 		BulletEffect.position = position
 		get_parent().add_child(BulletEffect)
