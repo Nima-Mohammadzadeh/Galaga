@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnce1r8cafgc4"]
-
-[ext_resource type="Texture2D" uid="uid://dfewa7umf3gwa" path="res://SpaceShooter_Assets/life.png" id="1_g84p0"]
-
-[node name="LifeIcon" type="TextureRect"]
-offset_right = 352.0
-offset_bottom = 333.0
-scale = Vector2(0.105, 0.105)
-texture = ExtResource("1_g84p0")
