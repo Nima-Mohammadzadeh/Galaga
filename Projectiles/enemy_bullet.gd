@@ -17,6 +17,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 func _on_Enemy_bullet_body_entered(body):
 	if body.is_in_group("player"):
 		print(body)
+		print(body)
 		var BulletEffect = pBulletEffect.instantiate()
 		BulletEffect.position = position
 		get_parent().add_child(BulletEffect)
