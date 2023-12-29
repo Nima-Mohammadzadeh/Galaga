@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://k3tdvwdqkw56"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_2tuew"]
+[ext_resource type="Texture2D" uid="uid://cjmwht7xdcla2" path="res://SpaceShooter_Assets/player_sheet.png" id="2_bagmw"]
+[ext_resource type="AudioStream" uid="uid://b1vm7nrcka6w5" path="res://Player/8d82b5_Galaga_Firing_Sound_Effect.mp3" id="3_t1e80"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0tdc"]
+radius = 100.031
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjdqf"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(0, 0, 99, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt1bs"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(198, 0, 99, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qifsj"]
+atlas = ExtResource("2_bagmw")
+region = Rect2(99, 0, 99, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vrft5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjdqf")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt1bs")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qifsj")
+}],
+"loop": true,
+"name": &"straight",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_2tuew")
+life = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_v0tdc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.2, 2.2)
+sprite_frames = SubResource("SpriteFrames_vrft5")
+animation = &"straight"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1.4013e-45, -150)
+
+[node name="ShotTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_t1e80")

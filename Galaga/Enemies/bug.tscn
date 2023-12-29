@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4ftcrq2ltrjc"]
+
+[ext_resource type="Script" path="res://Enemies/bug.gd" id="1_aginl"]
+[ext_resource type="Texture2D" uid="uid://cn8lglf47nr48" path="res://Enemies/PngItem_5011999.png" id="1_pmnan"]
+[ext_resource type="AudioStream" uid="uid://cnxh60r81k1vv" path="res://Enemies/Galaga_Kill_Enemy_Sound_Effect.mp3" id="3_1ac6e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_euxpt"]
+radius = 32.0156
+
+[node name="Enemy" type="Area2D" groups=["damagable"]]
+rotation = 3.14159
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_aginl")
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_euxpt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.133, 0.1)
+texture = ExtResource("1_pmnan")
+
+[node name="marker2d" type="Marker2D" parent="."]
+position = Vector2(-1.5299e-06, -17.5)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1ac6e")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

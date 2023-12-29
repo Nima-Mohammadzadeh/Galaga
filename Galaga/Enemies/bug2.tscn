@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://csaxy8n2io7r5"]
+
+[ext_resource type="PackedScene" uid="uid://d4ftcrq2ltrjc" path="res://Enemies/bug.tscn" id="1_nx3d8"]
+[ext_resource type="Texture2D" uid="uid://wk7rgsssb5p" path="res://Enemies/Galaga-Transparent-PNG.png" id="2_8osbf"]
+[ext_resource type="Script" path="res://Enemies/bug2.gd" id="2_sv80j"]
+
+[node name="Enemy" instance=ExtResource("1_nx3d8")]
+script = ExtResource("2_sv80j")
+
+[node name="Sprite2D" parent="." index="1"]
+rotation = 3.14159
+scale = Vector2(0.07, 0.053)
+texture = ExtResource("2_8osbf")

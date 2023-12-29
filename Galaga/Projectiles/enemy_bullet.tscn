@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm5wuloxcs23d"]
+
+[ext_resource type="Script" path="res://Projectiles/enemy_bullet.gd" id="1_7l14b"]
+[ext_resource type="Texture2D" uid="uid://dyp0xywfpfapk" path="res://Projectiles/toppng.com-alaga-galaga-missile-289x577.png" id="1_57eny"]
+
+[node name="EnemyBullet" type="Area2D" groups=["enemyBullet"]]
+rotation = 3.14159
+scale = Vector2(0.75, 0.75)
+collision_layer = 8
+script = ExtResource("1_7l14b")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-6, -14, -6, -20, 6, -20, 6, -14, 18, -14, 18, 0, 6, 0, 6, 20, -6, 20, -6, 0, -18, 0, -18, -14)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0841122, 0.0480094)
+texture = ExtResource("1_57eny")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
