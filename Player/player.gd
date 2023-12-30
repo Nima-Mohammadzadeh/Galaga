@@ -12,6 +12,7 @@ const TOP_BOUNDARY = 50
 const BOTTOM_BOUNDARY = 670
 
 var BULLET: PackedScene = preload("res://Projectiles/bullet.tscn")
+var GameOver: PackedScene = preload("res://Level/GameOver.tscn")
 
 func _ready():
 	Signals.emit_signal("on_player_life_changed",life)
@@ -50,15 +51,23 @@ func _physics_process(delta):
 func damage(amount: int):
 	life -= amount
 	Signals.emit_signal("on_player_life_changed",life)
-	if life <= 0:
-		
+	if life <= 0:		
 		$DeathSound.play()
 		hide()
 		remove_from_group("player")
 		var timer = Timer.new()
+		var game_over_timer = Timer.new()
+		game_over_timer.wait_time = $DeathSound.stream.get_length()
+		game_over_timer.one_shot = true
+		game_over_timer.connect("timeout", Callable(self, "_on_game_over_timeout"))
 		timer.wait_time = $DeathSound.stream.get_length()
 		timer.one_shot = true
 		timer.connect("timeout", Callable(self, "queue_free"))
 		add_child(timer)
+		add_child(game_over_timer)
 		timer.start()
+		game_over_timer.start()
+		
+func _on_game_over_timeout():
+	get_tree().change_scene_to_packed(GameOver)
 	
