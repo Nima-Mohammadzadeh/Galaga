@@ -29,5 +29,6 @@ func _on_player_life_changed(life: int):
 func _on_score_change(score_for_kill: int):
 	score += score_for_kill
 	setScore(score)
+	print(score)
 	
 
